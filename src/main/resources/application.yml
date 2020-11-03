@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: loansys-process
+  profiles:
+    active: dev
+  activiti:
+    database-schema: ACTIVITI
+    database-schema-update: true  # 自动建表
+    # 开启历史库
+    history-level: full
+    db-history-used: true
+    async-executor-activate: true
+
+server:
+  port: 9696
+  servlet:
+    context-path: /loansys-process
