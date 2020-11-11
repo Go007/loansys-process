@@ -45,6 +45,7 @@ public class ProcessService {
     @Autowired(required = false)
     protected ManagementService managementService;
 
+
     /**
      * 动态部署流程
      *
@@ -102,6 +103,11 @@ public class ProcessService {
             }
         }
         return customJobsList;
+    }
+
+    public String getBizKeyByProcInstId(String procInstId) {
+        return runtimeService.createProcessInstanceQuery().processInstanceId(procInstId).singleResult()
+                .getBusinessKey();
     }
 
     public ExecutionEntity getExecutionEntityByBizKey(String bizKey) {
@@ -193,7 +199,8 @@ public class ProcessService {
             }
         }
         for (String str : stringSet) {
-            List<ActRuJob> actRuJobList = actRuJobRepository.getAllJob(str, type);
+            //List<ActRuJob> actRuJobList = actRuJobRepository.getAllJob(str, type);
+            List<ActRuJob> actRuJobList = null;
             for (ActRuJob actRuJob : actRuJobList) {
                 CustomJobBo customJobEntity = new CustomJobBo();
                 customJobEntity.setId(actRuJob.getId());
